@@ -58,8 +58,8 @@ const getUserWithId = function(id) {
     });
 };
 
-
 exports.getUserWithId = getUserWithId;
+
 
 
 /**
@@ -69,18 +69,18 @@ exports.getUserWithId = getUserWithId;
  */
 const addUser =  function(user) {
   const sql = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *;`;
-  console.log('testing');
-
+  
   return pool.query(sql, [user.name, user.email, user.password])
     .then((result) => result.rows[0])
-      
-      
-    
+
     .catch((err) => {
       console.log(err.message);
     });
 };
+      
 exports.addUser = addUser;
+      
+    
 
 /// Reservations
 
@@ -105,6 +105,7 @@ const getAllReservations = function(guest_id, limit = 10) {
       console.log(result.rows);
       return result.rows;
     })
+
     .catch((err) => {
       console.log(err.message);
     });
@@ -184,10 +185,11 @@ const addProperty = function(property) {
   return pool.query(sql, [property.title, property.description, property.owner_id, property.cover_photo_url, property.thumbnail_photo_url, property.cost_per_night, property.parking_spaces, property.number_of_bathrooms, property.number_of_bedrooms, DEFAULT_ACTIVE_VALUE, property.province, property.city, property.country, property.street, property.post_code])
     .then((result) => result.rows[0])
     
-    
-  
     .catch((err) => {
       console.log(err.message);
     });
 };
+
 exports.addProperty = addProperty;
+    
+  
